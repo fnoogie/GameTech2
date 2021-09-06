@@ -3691,6 +3691,23 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1448816841}
   m_CullTransparentMesh: 1
+--- !u!1 &1463965235 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 2157322243948881828, guid: a7ab32b5b8bcbc444a5c7088107d02c6, type: 3}
+  m_PrefabInstance: {fileID: 1559655381}
+  m_PrefabAsset: {fileID: 0}
+--- !u!114 &1463965241
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1463965235}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: e2b64ac9179d8644986b163fb1161e15, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &1472097245
 GameObject:
   m_ObjectHideFlags: 0
@@ -4463,7 +4480,7 @@ GameObject:
   - component: {fileID: 1670427308}
   - component: {fileID: 1670427312}
   m_Layer: 0
-  m_Name: Cube
+  m_Name: Ground
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
