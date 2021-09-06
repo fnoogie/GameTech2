@@ -58,3 +58,7 @@ sysinfo.txt
 # Crashlytics generated file
 crashlytics-build.properties
 
+
+TestProj/test_proj/Library/
+
+TestProj/test_proj/Logs/

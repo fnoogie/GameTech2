@@ -14,7 +14,7 @@ GameObject:
   - component: {fileID: 2157322243948881829}
   - component: {fileID: 4810299931400380497}
   m_Layer: 0
-  m_Name: Collectable
+  m_Name: Stick
   m_TagString: toCollect
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0

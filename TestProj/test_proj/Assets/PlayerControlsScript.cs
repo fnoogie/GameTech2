@@ -4,6 +4,7 @@ using UnityEngine;
 
 public class PlayerControlsScript : MonoBehaviour
 {
+    public bool playGame = true, shopping = false;
     Vector3 playerMovementVec;
     float speed = 2f;
     GameObject GM;
@@ -17,9 +18,19 @@ public class PlayerControlsScript : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        this.gameObject.transform.position += playerMovement();
-        //this.gameObject.transform.rotation = Quaternion.Euler(transform.GetChild(0).rotation.x % 360f, 0,0);
-        gameObject.transform.forward = transform.GetChild(0).forward;
+        if (playGame)
+        {
+            this.gameObject.transform.position += playerMovement();
+            //this.gameObject.transform.rotation = Quaternion.Euler(transform.GetChild(0).rotation.x % 360f, 0,0);
+            gameObject.transform.forward = transform.GetChild(0).forward;
+        }
+        else if(!playGame && shopping)
+        {
+            //shop menu to buy upgrades
+            //time increase +5 or +10s
+            //1 pickup gives 2 sticks
+            //stones are a thing now
+        }
     }
 
     Vector3 playerMovement()
@@ -32,10 +43,18 @@ public class PlayerControlsScript : MonoBehaviour
     {
         if(other.gameObject.CompareTag("toCollect"))
         {
-
-            Destroy(other.gameObject);
-            GM.GetComponent<GameManagerScript>().collected();
-            GM.GetComponent<GameManagerScript>().newSpawn();
+            if (other.gameObject.name.Contains("Stick"))
+            {
+                Destroy(other.gameObject);
+                GM.GetComponent<GameManagerScript>().collectedStick();
+                GM.GetComponent<GameManagerScript>().newSpawn();
+            }
+            else if (other.gameObject.name.Contains("Stone"))
+            {
+                Destroy(other.gameObject);
+                GM.GetComponent<GameManagerScript>().collectedStone();
+                GM.GetComponent<GameManagerScript>().newSpawn();
+            }
         }
     }
 }
