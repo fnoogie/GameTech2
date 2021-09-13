@@ -6,11 +6,11 @@ using TMPro;
 public class GameManagerScript : MonoBehaviour
 {
     public GameObject[] stickPreFab = new GameObject[3], stonePreFab = new GameObject[2];
-    public GameObject player, shopUI;
+    public GameObject player, shopUI, winPanel;
     
     public Vector2 SpawnBoundsX, SpawnBoundsZ;
     [HideInInspector]
-    public bool collecting = true, shopping = false;
+    public bool collecting = true, shopping = false, win = false;
 
     //global upgrades
     [HideInInspector]
@@ -29,11 +29,11 @@ public class GameManagerScript : MonoBehaviour
 
     [HideInInspector]
     public float timeNow = 0f, timeMaxDefault = 20f, timeIncreaseUpgrade = 10f;
-    //[HideInInspector]
+    [HideInInspector]
     public int 
-        sticks = 0, spendingSticks = 50,
-        stones = 0, spendingStones = 50;
-    public TextMeshProUGUI stickText, shopStickText, stoneText, shopStoneText, time;
+        sticks = 0, spendingSticks = 0, totalSticks = 0,
+        stones = 0, spendingStones = 0, totalStones = 0;
+    public TextMeshProUGUI stickText, shopStickText, stoneText, shopStoneText, time, winScoreText;
     // Start is called before the first frame update
     void Start()
     {
@@ -65,11 +65,24 @@ public class GameManagerScript : MonoBehaviour
         {
             time.text = "Time Left: " + ((timeMaxDefault + (timeIncreaseUpgrade * timeIncreasePurchaseAmount)) - timeNow).ToString("F2");
         }
-        shopUI.SetActive(shopping);
-        stickText.gameObject.SetActive(!shopping);
-        stoneText.gameObject.SetActive(!shopping);
-        shopStickText.gameObject.SetActive(shopping);
-        shopStoneText.gameObject.SetActive(shopping);
+        if (win)
+        {
+            shopUI.SetActive(!win);
+            stickText.gameObject.SetActive(!win);
+            stoneText.gameObject.SetActive(!win);
+            shopStickText.gameObject.SetActive(!win);
+            shopStoneText.gameObject.SetActive(!win);
+            winPanel.gameObject.SetActive(win);
+            winScoreText.text = "Total Sticks Collected: " + (totalSticks) + "\nTotal Stones Collected: " + (totalStones); 
+        }
+        else
+        {
+            shopUI.SetActive(shopping);
+            stickText.gameObject.SetActive(!shopping);
+            stoneText.gameObject.SetActive(!shopping);
+            shopStickText.gameObject.SetActive(shopping);
+            shopStoneText.gameObject.SetActive(shopping);
+        }
     }
 
     public void newSpawn()
@@ -97,11 +110,13 @@ public class GameManagerScript : MonoBehaviour
     public void collectedStick()
     {
         sticks += (1 + (stickPickupIncreasePurchaseAmount));
+        totalSticks++;
         stickText.text = "Sticks Collected: " + sticks;
     }
     public void collectedStone()
     {
         stones += (1 + (stonePickupIncreasePurchaseAmount));
+        totalStones++;
         stoneText.text = "Stones Collected: " + stones;
     }
 

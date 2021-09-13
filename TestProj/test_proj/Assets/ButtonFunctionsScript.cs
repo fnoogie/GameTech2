@@ -2,7 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using TMPro;
-
+using UnityEngine.SceneManagement;
 public class ButtonFunctionsScript : MonoBehaviour
 {
     GameManagerScript GM;
@@ -60,6 +60,7 @@ public class ButtonFunctionsScript : MonoBehaviour
         {
             text.text = "Times Purchased: " + GM.winGamePurchased;
             GM.updateSticksAndStones();
+            GM.win = true;
         }
     }
 
