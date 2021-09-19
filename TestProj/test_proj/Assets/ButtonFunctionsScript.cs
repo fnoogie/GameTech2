@@ -10,7 +10,8 @@ public class ButtonFunctionsScript : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-        GM = GameObject.Find("GameManager").GetComponent<GameManagerScript>();
+        if(SceneManager.GetActiveScene().name == "SampleScene")
+            GM = GameObject.Find("GameManager").GetComponent<GameManagerScript>();
 
     }
 
@@ -96,5 +97,15 @@ public class ButtonFunctionsScript : MonoBehaviour
         GM.stoneText.text = "Stones Collected: 0";
         GM.sticks = 0;
         GM.stones = 0;
+    }
+
+    public void startGame()
+    {
+        SceneManager.LoadScene("SampleScene");
+    }
+
+    public void quitGame()
+    {
+        Application.Quit();
     }
 }
