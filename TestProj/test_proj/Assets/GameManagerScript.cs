@@ -12,6 +12,7 @@ public class GameManagerScript : MonoBehaviour
     [HideInInspector]
     public bool collecting = true, shopping = false, win = false;
 
+    public GameObject dirLight;
     //global upgrades
     [HideInInspector]
     public int timeIncreasePurchaseAmount = 0, timeIncreaseCost = 5, winGameCost = 250, winGamePurchased = 0, speedIncreaseCost = 10, moveFasterPurchaseTimes = 0;
@@ -28,7 +29,7 @@ public class GameManagerScript : MonoBehaviour
 
 
     [HideInInspector]
-    public float timeNow = 0f, timeMaxDefault = 20f, timeIncreaseUpgrade = 10f;
+    public float timeNow = 0f, timeMaxDefault = 20f, timeIncreaseUpgrade = 10f, rotChange = 0;
     [HideInInspector]
     public int 
         sticks = 0, spendingSticks = 0, totalSticks = 0,
@@ -45,6 +46,11 @@ public class GameManagerScript : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
+        if (!shopping)
+        {
+            rotChange = 160 / (timeMaxDefault + (timeIncreaseUpgrade * timeIncreasePurchaseAmount));
+            dirLight.transform.rotation = Quaternion.Euler(160 - (rotChange * timeNow), 0, 0);
+        }
         if (collecting)
         {
             timeNow += Time.deltaTime;
