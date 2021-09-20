@@ -34,6 +34,8 @@ public class GameManagerScript : MonoBehaviour
         sticks = 0, spendingSticks = 0, totalSticks = 0,
         stones = 0, spendingStones = 0, totalStones = 0;
     public TextMeshProUGUI stickText, shopStickText, stoneText, shopStoneText, time, winScoreText;
+
+    public AudioClip failedPurchase, successPurchase, hitFloorSound;
     // Start is called before the first frame update
     void Start()
     {
@@ -91,19 +93,19 @@ public class GameManagerScript : MonoBehaviour
         if (stonesUnlocked)
         {
             float rng = Random.value;
-            if (rng >= 0.5f)
+            if (rng >= 0.4f)
             {
-                Instantiate(stickPreFab[prefabNum], new Vector3(Random.Range(SpawnBoundsX.x, SpawnBoundsX.y), 0f, Random.Range(SpawnBoundsZ.x, SpawnBoundsZ.y)), Quaternion.Euler(90, 0, Random.Range(0, 360)));
+                Instantiate(stickPreFab[prefabNum], new Vector3(Random.Range(SpawnBoundsX.x, SpawnBoundsX.y), Random.Range(0,3), Random.Range(SpawnBoundsZ.x, SpawnBoundsZ.y)), Quaternion.Euler(90, 0, Random.Range(0, 360)));
             }
             else
             {
-                GameObject obj = Instantiate(stonePreFab[prefabNum], new Vector3(Random.Range(SpawnBoundsX.x, SpawnBoundsX.y), 0f, Random.Range(SpawnBoundsZ.x, SpawnBoundsZ.y)), Quaternion.Euler(90, 0, Random.Range(0, 360)));
+                Instantiate(stonePreFab[prefabNum], new Vector3(Random.Range(SpawnBoundsX.x, SpawnBoundsX.y), Random.Range(0, 3), Random.Range(SpawnBoundsZ.x, SpawnBoundsZ.y)), Quaternion.Euler(90, 0, Random.Range(0, 360)));
             }
 
         }
         else
         {
-            Instantiate(stickPreFab[prefabNum], new Vector3(Random.Range(SpawnBoundsX.x, SpawnBoundsX.y), 0f, Random.Range(SpawnBoundsZ.x, SpawnBoundsZ.y)), Quaternion.Euler(90, 0, Random.Range(0, 360)));
+            Instantiate(stickPreFab[prefabNum], new Vector3(Random.Range(SpawnBoundsX.x, SpawnBoundsX.y), Random.Range(0, 3), Random.Range(SpawnBoundsZ.x, SpawnBoundsZ.y)), Quaternion.Euler(90, 0, Random.Range(0, 360)));
         }
     }
 

@@ -64,3 +64,5 @@ TestProj/test_proj/Library/
 TestProj/test_proj/Logs/
 
 TestProj/test_proj/obj/Debug/
+
+*.zip

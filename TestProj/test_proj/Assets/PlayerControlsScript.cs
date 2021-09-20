@@ -6,6 +6,7 @@ public class PlayerControlsScript : MonoBehaviour
 {
     Vector3 playerMovementVec;
     GameManagerScript GM;
+    public AudioClip pickUp;
     // Start is called before the first frame update
     void Start()
     {
@@ -46,6 +47,13 @@ public class PlayerControlsScript : MonoBehaviour
                 GM.GetComponent<GameManagerScript>().collectedStone();
                 GM.GetComponent<GameManagerScript>().newSpawn();
             }
+            playClip(pickUp);
         }
+    }
+
+    public void playClip(AudioClip clip)
+    {
+        gameObject.GetComponent<AudioSource>().clip = clip;
+        gameObject.GetComponent<AudioSource>().Play();
     }
 }

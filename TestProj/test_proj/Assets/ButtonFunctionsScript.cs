@@ -6,11 +6,13 @@ using UnityEngine.SceneManagement;
 public class ButtonFunctionsScript : MonoBehaviour
 {
     GameManagerScript GM;
+    PlayerControlsScript player;
     public TextMeshProUGUI text;
     // Start is called before the first frame update
     void Start()
     {
-        if(SceneManager.GetActiveScene().name == "SampleScene")
+        player = GameObject.Find("Player").GetComponent<PlayerControlsScript>();
+        if (SceneManager.GetActiveScene().name == "SampleScene")
             GM = GameObject.Find("GameManager").GetComponent<GameManagerScript>();
 
     }
@@ -30,7 +32,10 @@ public class ButtonFunctionsScript : MonoBehaviour
             GM.timeIncreasePurchaseAmount++;
             text.text = "Times Purchased: " + GM.timeIncreasePurchaseAmount;
             GM.updateSticksAndStones();
+            player.playClip(GM.successPurchase);
         }
+        else
+            player.playClip(GM.failedPurchase);
     }
 
     public void moveFaster()
@@ -41,7 +46,10 @@ public class ButtonFunctionsScript : MonoBehaviour
             GM.moveFasterPurchaseTimes++;
             text.text = "Times Purchased: " + GM.moveFasterPurchaseTimes;
             GM.updateSticksAndStones();
+            player.playClip(GM.successPurchase);
         }
+        else
+            player.playClip(GM.failedPurchase);
     }
 
     public void unlockStones()
@@ -52,7 +60,10 @@ public class ButtonFunctionsScript : MonoBehaviour
             GM.stonesUnlocked = true;
             text.text = "Times Purchased: 1";
             GM.updateSticksAndStones();
+            player.playClip(GM.successPurchase);
         }
+        else
+            player.playClip(GM.failedPurchase);
     }
 
     public void winGame()
@@ -62,7 +73,10 @@ public class ButtonFunctionsScript : MonoBehaviour
             text.text = "Times Purchased: " + GM.winGamePurchased;
             GM.updateSticksAndStones();
             GM.win = true;
+            player.playClip(GM.successPurchase);
         }
+        else
+            player.playClip(GM.failedPurchase);
     }
 
     public void pickupMoreSticks()
@@ -73,7 +87,10 @@ public class ButtonFunctionsScript : MonoBehaviour
             GM.stickPickupIncreasePurchaseAmount++;
             text.text = "Times Purchased: " + GM.stickPickupIncreasePurchaseAmount;
             GM.updateSticksAndStones();
+            player.playClip(GM.successPurchase);
         }
+        else
+            player.playClip(GM.failedPurchase);
     }
 
     public void pickupMoreStones()
@@ -84,7 +101,10 @@ public class ButtonFunctionsScript : MonoBehaviour
             GM.stonePickupIncreasePurchaseAmount++;
             text.text = "Times Purchased: " + GM.stonePickupIncreasePurchaseAmount;
             GM.updateSticksAndStones();
+            player.playClip(GM.successPurchase);
         }
+        else
+            player.playClip(GM.failedPurchase);
     }
 
 

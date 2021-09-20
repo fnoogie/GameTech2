@@ -21,6 +21,7 @@ public class CollectableScript : MonoBehaviour
         if(collision.gameObject.name.Contains("Ground"))
         {
             gameObject.transform.GetChild(0).gameObject.GetComponent<ParticleSystem>().Play();
+            GameObject.Find("Player").GetComponent<PlayerControlsScript>().playClip(GameObject.Find("GameManager").GetComponent<GameManagerScript>().hitFloorSound);
         }
     }
 }
