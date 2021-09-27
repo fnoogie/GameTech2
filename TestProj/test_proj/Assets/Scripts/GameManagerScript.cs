@@ -28,7 +28,7 @@ public class GameManagerScript : MonoBehaviour
     public int stonePickupIncreasePurchaseAmount = 0, unlockStonesCost = 10, pickupMoreStoneCost = 25;
 
 
-    [HideInInspector]
+    //[HideInInspector]
     public float timeNow = 0f, timeMaxDefault = 20f, timeIncreaseUpgrade = 10f, rotChange = 0;
     [HideInInspector]
     public int 
