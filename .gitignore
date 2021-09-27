@@ -74,3 +74,5 @@ LightingTests/Logs/
 LightingTests/UserSettings/EditorUserSettings.asset
 
 LightingTests/.vsconfig
+
+TestProj/test_proj/Temp/
