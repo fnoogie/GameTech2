@@ -66,3 +66,11 @@ TestProj/test_proj/Logs/
 TestProj/test_proj/obj/Debug/
 
 *.zip
+
+LightingTests/Library/
+
+LightingTests/Logs/
+
+LightingTests/UserSettings/EditorUserSettings.asset
+
+LightingTests/.vsconfig
