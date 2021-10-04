@@ -76,3 +76,9 @@ LightingTests/UserSettings/EditorUserSettings.asset
 LightingTests/.vsconfig
 
 TestProj/test_proj/Temp/
+
+thirdpersonGame/Library/
+
+thirdpersonGame/Logs/
+
+thirdpersonGame/obj/Debug/
