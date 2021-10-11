@@ -5,14 +5,17 @@ using UnityEngine.SceneManagement;
 
 public class playerScript : MonoBehaviour
 {
+    public GameObject camera;
     public float speed = 5, jumpPower = 5;
     Vector3 playerMovementVec;
     public bool rotating = false;
     bool canJump, canRotate;
     Vector3 gravDir;
+    int rot;
     // Start is called before the first frame update
     void Start()
     {
+        Cursor.lockState = CursorLockMode.Locked;
     }
 
     // Update is called once per frame
@@ -29,6 +32,16 @@ public class playerScript : MonoBehaviour
         }
         Physics.gravity = -gravDir;
         gameObject.GetComponent<Rigidbody>().useGravity = !rotating;
+
+        //Vector3 dir = camera.transform.position - gameObject.transform.position;
+        //transform.Rotate(0, dir.y, 0);
+    }
+    private void LateUpdate()
+    {
+        //transform.rotation = Quaternion.Euler(0, transform.rotation.y, transform.rotation.z);
+        /*
+        if(!rotating)
+            clampXZ();*/
     }
 
     Vector3 movement()
@@ -42,6 +55,9 @@ public class playerScript : MonoBehaviour
             GetComponent<Rigidbody>().velocity += (gameObject.transform.up * jumpPower);
             canJump = false;
         }
+
+        if (Input.GetKeyDown(KeyCode.R))
+            clampRotations();
 
         return playerMovementVec * speed * Time.deltaTime;
     }
@@ -79,5 +95,19 @@ public class playerScript : MonoBehaviour
     {
         canJump = true;
         canRotate = true;
+    }
+
+    void clampRotations()
+    {
+        if (transform.localRotation.y >= 45 && transform.localRotation.y < 135)
+            rot = 90;
+        else if (transform.localRotation.y >= 135 && transform.localRotation.y < 225)
+            rot = 180;
+        else if (transform.localRotation.y >= 225 && transform.localRotation.y < 315)
+            rot = 270;
+        else
+            rot = 0;
+
+        transform.localRotation = Quaternion.Euler(0, rot, transform.rotation.z);
     }
 }
