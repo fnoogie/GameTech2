@@ -21,7 +21,7 @@ public class tpCameraScript : MonoBehaviour
 
             player.Rotate(0f, Vector3.up.y * mouseX, 0f);
             xRot -= mouseY;
-            xRot = Mathf.Clamp(xRot, -30f, 40f);
+            xRot = Mathf.Clamp(xRot, -80f, 40f);
             transform.localRotation = Quaternion.Euler(xRot, 0f, 0f);
         }
     }

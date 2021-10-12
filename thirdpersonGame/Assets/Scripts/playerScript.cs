@@ -5,13 +5,18 @@ using UnityEngine.SceneManagement;
 
 public class playerScript : MonoBehaviour
 {
-    public GameObject camera;
-    public float speed = 5, jumpPower = 5;
+    public Transform carryObjTransformPosition, particlSystem;
+    public float speed = 5, jumpPower = 5, pickupRange = 3f;
     Vector3 playerMovementVec;
     public bool rotating = false;
     bool canJump, canRotate;
     Vector3 gravDir;
     int rot;
+
+    public List<GameObject> pickupObjects;
+    bool canCarry = true, isCarry = false;
+    GameObject carryObj;
+
     // Start is called before the first frame update
     void Start()
     {
@@ -21,6 +26,7 @@ public class playerScript : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
+        updateCloseObjects();
 
         if (!rotating)
         {
@@ -28,11 +34,25 @@ public class playerScript : MonoBehaviour
             if(canRotate)
                 rotate();
             gravDir = new Vector3(Mathf.RoundToInt(transform.up.x), Mathf.RoundToInt(transform.up.y), Mathf.RoundToInt(transform.up.z)) * 3;
-            
+            checkInput();
         }
         Physics.gravity = -gravDir;
         gameObject.GetComponent<Rigidbody>().useGravity = !rotating;
 
+
+        if (isCarry)
+        {
+            carryObj.transform.position = carryObjTransformPosition.position;
+            particlSystem.position = new Vector3(999, 999, 999);
+        }
+        else
+        {
+            if (carryObj != null)
+                particlSystem.position = carryObj.transform.position;
+            else
+                particlSystem.position = new Vector3(999, 999, 999);
+            particlSystem.rotation = Quaternion.Euler(gameObject.transform.up + new Vector3(-90, 0, 0));
+        }
         //Vector3 dir = camera.transform.position - gameObject.transform.position;
         //transform.Rotate(0, dir.y, 0);
     }
@@ -43,7 +63,55 @@ public class playerScript : MonoBehaviour
         if(!rotating)
             clampXZ();*/
     }
+    void updateCloseObjects()
+    {
+        pickupObjects.Clear();
+        foreach(GameObject g in GameObject.FindGameObjectsWithTag("Pickup"))
+        {
+            if(Vector3.Distance(g.transform.position, transform.position) < pickupRange)
+                pickupObjects.Add(g);
+        }
+    }
+    void checkInput()
+    {
+        if(!isCarry)
+            carryObj = findClosestObj();
+        if (Input.GetKeyDown(KeyCode.G))
+        {
+            if(isCarry)
+            {
+                carryObj.GetComponent<boxScript>().gravityOn = true;
+                isCarry = false;
+                canCarry = false;
+            }
+            else
+            {
+                canCarry = true;
+                isCarry = true;
+                if(carryObj != null)
+                    carryObj.GetComponent<boxScript>().gravityOn = false;
+            }
+        }
+    }
 
+    GameObject findClosestObj()
+    {
+        if (pickupObjects.Count == 0)
+            return null;
+        else if (pickupObjects.Count == 1)
+            return pickupObjects[0];
+        else
+        {
+            GameObject closest = pickupObjects[0];
+            for(int i = 1; i < pickupObjects.Count; ++i)
+            {
+                if (Vector3.Distance(closest.transform.position, transform.position) > Vector3.Distance(pickupObjects[i].transform.position, transform.position))
+                    closest = pickupObjects[i];
+            }
+            return closest;
+        }
+    }
+        
     Vector3 movement()
     {
         //var desiredMoveDirection = forward * verticalAxis + right * horizontalAxis;
