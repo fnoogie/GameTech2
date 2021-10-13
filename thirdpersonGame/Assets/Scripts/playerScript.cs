@@ -40,7 +40,7 @@ public class playerScript : MonoBehaviour
         gameObject.GetComponent<Rigidbody>().useGravity = !rotating;
 
 
-        if (isCarry)
+        if (isCarry && carryObj != null)
         {
             carryObj.transform.position = carryObjTransformPosition.position;
             particlSystem.position = new Vector3(999, 999, 999);
@@ -76,7 +76,7 @@ public class playerScript : MonoBehaviour
     {
         if(!isCarry)
             carryObj = findClosestObj();
-        if (Input.GetKeyDown(KeyCode.G))
+        if (Input.GetKeyDown(KeyCode.G) && carryObj != null)
         {
             if(isCarry)
             {
@@ -125,7 +125,11 @@ public class playerScript : MonoBehaviour
         }
 
         if (Input.GetKeyDown(KeyCode.R))
+        {
             clampRotations();
+            foreach (GameObject g in GameObject.FindGameObjectsWithTag("Pickup"))
+                g.GetComponent<boxScript>().oppositeGravity = false;
+        }
 
         return playerMovementVec * speed * Time.deltaTime;
     }
