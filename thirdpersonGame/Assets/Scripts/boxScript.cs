@@ -4,14 +4,17 @@ using UnityEngine;
 
 public class boxScript : MonoBehaviour
 {
-
+    Vector3 initialPos;
     public bool gravityOn = true, oppositeGravity = false;
     public Material followGrav, oppositeGrav;
     Rigidbody rb;
+    playerScript player;
     // Start is called before the first frame update
     void Start()
     {
         rb = gameObject.GetComponent<Rigidbody>();
+        player = GameObject.FindGameObjectWithTag("Player").GetComponent<playerScript>();
+        initialPos = gameObject.transform.position;
     }
 
     // Update is called once per frame
@@ -56,5 +59,22 @@ public class boxScript : MonoBehaviour
             other.gameObject.GetComponent<buttonScript>().activated = false;
         }
     }
-    
+
+    private void OnCollisionEnter(Collision collision)
+    {
+        if(collision.gameObject.tag.Equals("Pickup"))
+        {
+            if (player.findClosestObj() == this.gameObject)
+            {
+                if (player.carryObj = this.gameObject)
+                    player.carryObj = null;
+                player.pickupObjects.Remove(this.gameObject);
+            }
+            gameObject.transform.position = initialPos;
+            gravityOn = true;
+            oppositeGravity = false;
+            rb.velocity = Vector3.zero;
+
+        }
+    }
 }

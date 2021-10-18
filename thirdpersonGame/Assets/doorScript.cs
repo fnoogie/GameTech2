@@ -1,10 +1,12 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 
 public class doorScript : MonoBehaviour
 {
     public List<GameObject> buttonList;
+    public string sceneToLoad;
     public Material doorOff, doorOn;
     public bool on = true;
     // Start is called before the first frame update
@@ -38,5 +40,13 @@ public class doorScript : MonoBehaviour
             gameObject.GetComponent<MeshRenderer>().material = doorOff;
 
 
+    }
+
+    private void OnCollisionEnter(Collision collision)
+    {
+        if(collision.gameObject.name.Contains("Player") && on)
+        {
+            SceneManager.LoadScene(sceneToLoad);
+        }
     }
 }

@@ -6,7 +6,7 @@ using UnityEngine.SceneManagement;
 public class playerScript : MonoBehaviour
 {
     public Transform carryObjTransformPosition, particlSystem;
-    public float speed = 5, jumpPower = 5, pickupRange = 3f;
+    float speed = 5, jumpPower = 3.5f, pickupRange = 5f;
     Vector3 playerMovementVec;
     public bool rotating = false;
     bool canJump, canRotate;
@@ -14,8 +14,8 @@ public class playerScript : MonoBehaviour
     int rot;
 
     public List<GameObject> pickupObjects;
-    bool canCarry = true, isCarry = false;
-    GameObject carryObj;
+    public bool isCarry = false;
+    public GameObject carryObj;
 
     // Start is called before the first frame update
     void Start()
@@ -82,11 +82,9 @@ public class playerScript : MonoBehaviour
             {
                 carryObj.GetComponent<boxScript>().gravityOn = true;
                 isCarry = false;
-                canCarry = false;
             }
             else
             {
-                canCarry = true;
                 isCarry = true;
                 if(carryObj != null)
                     carryObj.GetComponent<boxScript>().gravityOn = false;
@@ -94,7 +92,7 @@ public class playerScript : MonoBehaviour
         }
     }
 
-    GameObject findClosestObj()
+    public GameObject findClosestObj()
     {
         if (pickupObjects.Count == 0)
             return null;
