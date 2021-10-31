@@ -13,6 +13,7 @@ public class playerScript : MonoBehaviour
     Vector3 gravDir;
     int rot;
 
+    public Material transparentMat, playerMat;
     public List<GameObject> pickupObjects;
     public bool isCarry = false;
     public GameObject carryObj;
@@ -21,6 +22,7 @@ public class playerScript : MonoBehaviour
     void Start()
     {
         Cursor.lockState = CursorLockMode.Locked;
+        gameObject.GetComponent<MeshRenderer>().material = playerMat;
     }
 
     // Update is called once per frame
@@ -43,15 +45,16 @@ public class playerScript : MonoBehaviour
         if (isCarry && carryObj != null)
         {
             carryObj.transform.position = carryObjTransformPosition.position;
+            gameObject.GetComponent<MeshRenderer>().material = transparentMat;
             particlSystem.position = new Vector3(999, 999, 999);
         }
         else
         {
+            gameObject.GetComponent<MeshRenderer>().material = playerMat;
             if (carryObj != null)
                 particlSystem.position = carryObj.transform.position;
             else
                 particlSystem.position = new Vector3(999, 999, 999);
-            particlSystem.rotation = Quaternion.Euler(gameObject.transform.up + new Vector3(-90, 0, 0));
         }
         //Vector3 dir = camera.transform.position - gameObject.transform.position;
         //transform.Rotate(0, dir.y, 0);

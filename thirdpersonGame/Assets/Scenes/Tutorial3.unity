@@ -197,6 +197,8 @@ MonoBehaviour:
   carryObjTransformPosition: {fileID: 1268041257}
   particlSystem: {fileID: 2107492342}
   rotating: 0
+  transparentMat: {fileID: 2100000, guid: 31e8280d51bed0b4c870c9110edb7f61, type: 2}
+  playerMat: {fileID: 2100000, guid: 3a4240dada69d514cad25ce749ce4faa, type: 2}
   pickupObjects: []
   isCarry: 0
   carryObj: {fileID: 0}
@@ -219,7 +221,7 @@ MeshRenderer:
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
-  - {fileID: 10303, guid: 0000000000000000f000000000000000, type: 0}
+  - {fileID: 2100000, guid: 3a4240dada69d514cad25ce749ce4faa, type: 2}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0

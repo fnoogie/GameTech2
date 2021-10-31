@@ -6792,6 +6792,8 @@ MonoBehaviour:
   carryObjTransformPosition: {fileID: 970473884}
   particlSystem: {fileID: 1019504721}
   rotating: 0
+  transparentMat: {fileID: 2100000, guid: 31e8280d51bed0b4c870c9110edb7f61, type: 2}
+  playerMat: {fileID: 2100000, guid: 3a4240dada69d514cad25ce749ce4faa, type: 2}
   pickupObjects: []
   isCarry: 0
   carryObj: {fileID: 0}
