@@ -7,7 +7,7 @@ using Ink.Runtime;
 
 public class inkTesting : MonoBehaviour
 {
-    bool waiting = false, finished = false, shownLast = false;
+    bool waiting = false, finished = false;
     public float timeBetweenLines = 5f;
     public TextMeshProUGUI textbox;
     public TextAsset inkJSONAsset;

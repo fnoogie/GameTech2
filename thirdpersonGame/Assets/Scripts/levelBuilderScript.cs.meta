@@ -1,0 +1,15 @@
+fileFormatVersion: 2
+guid: cd08acb3a5e5ead46b6ca6edee9e91a9
+MonoImporter:
+  externalObjects: {}
+  serializedVersion: 2
+  defaultReferences:
+  - levelBox: {fileID: 141920482567018060, guid: 702c8f77adb28d24bbb5c6d31ddebd04, type: 3}
+  - player: {fileID: 1162845006973963882, guid: d8b17f2956f2c4f4fbe683dcebf79f62, type: 3}
+  - cube: {fileID: 6958032338098213302, guid: 986e97bcf5f44f14395549e2ebdc1e98, type: 3}
+  - button: {fileID: 7885010865304926194, guid: fc7106c8de89fe249ae8ec958349b157, type: 3}
+  executionOrder: 0
+  icon: {instanceID: 0}
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 
