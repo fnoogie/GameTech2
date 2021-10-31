@@ -8,6 +8,7 @@ MonoImporter:
   - player: {fileID: 1162845006973963882, guid: d8b17f2956f2c4f4fbe683dcebf79f62, type: 3}
   - cube: {fileID: 6958032338098213302, guid: 986e97bcf5f44f14395549e2ebdc1e98, type: 3}
   - button: {fileID: 7885010865304926194, guid: fc7106c8de89fe249ae8ec958349b157, type: 3}
+  - door: {fileID: 190623014616227676, guid: eb78162c48686d14bb84e38191b53544, type: 3}
   executionOrder: 0
   icon: {instanceID: 0}
   userData: 

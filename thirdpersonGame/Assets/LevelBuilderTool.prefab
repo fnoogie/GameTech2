@@ -9,7 +9,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 7203679542530928004}
-  - component: {fileID: 7203679542530928005}
+  - component: {fileID: 1076206951}
   m_Layer: 0
   m_Name: LevelBuilderTool
   m_TagString: Untagged
@@ -31,7 +31,7 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!114 &7203679542530928005
+--- !u!114 &1076206951
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -47,3 +47,4 @@ MonoBehaviour:
   player: {fileID: 1162845006973963882, guid: d8b17f2956f2c4f4fbe683dcebf79f62, type: 3}
   cube: {fileID: 6958032338098213302, guid: 986e97bcf5f44f14395549e2ebdc1e98, type: 3}
   button: {fileID: 7885010865304926194, guid: fc7106c8de89fe249ae8ec958349b157, type: 3}
+  door: {fileID: 190623014616227676, guid: eb78162c48686d14bb84e38191b53544, type: 3}
